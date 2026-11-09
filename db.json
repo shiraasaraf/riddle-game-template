@@ -1,0 +1,35 @@
+{
+  "riddles": [
+    {
+      "id": 1,
+      "name": "Easy Math",
+      "taskDescription": "What is 5 + 3?",
+      "correctAnswer": "8"
+    },
+    {
+      "id": 2,
+      "name": "Multiplication",
+      "taskDescription": "What is 4 * 3?",
+      "correctAnswer": "12"
+    },
+    {
+      "id": 3,
+      "name": "Number Pattern",
+      "taskDescription": "What comes next: 2, 4, 6, 8, ...?",
+      "correctAnswer": "10"
+    },
+    {
+      "id": 4,
+      "name": "Days of the Week",
+      "taskDescription": "If today is Monday, what day will it be in three days?",
+      "correctAnswer": "Thursday"
+    },
+    {
+      "id": 5,
+      "name": "Word Riddle",
+      "taskDescription": "What has hands and tells the time?",
+      "correctAnswer": "clock"
+    }
+  ],
+  "players": []
+}
