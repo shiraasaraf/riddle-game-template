@@ -17,19 +17,33 @@
       "name": "Number Pattern",
       "taskDescription": "What comes next: 2, 4, 6, 8, ...?",
       "correctAnswer": "10"
+    }
+  ],
+  "players": [
+    {
+      "name": "shira",
+      "lowestTime": 5.672,
+      "id": 1
     },
     {
-      "id": 4,
-      "name": "Days of the Week",
-      "taskDescription": "If today is Monday, what day will it be in three days?",
-      "correctAnswer": "Thursday"
+      "name": "avi",
+      "lowestTime": null,
+      "id": 2
+    },
+    {
+      "name": "shir",
+      "lowestTime": null,
+      "id": 3
+    },
+    {
+      "name": "",
+      "lowestTime": null,
+      "id": 4
     },
     {
       "id": 5,
-      "name": "Word Riddle",
-      "taskDescription": "What has hands and tells the time?",
-      "correctAnswer": "clock"
+      "name": "aviad",
+      "lowestTime": 7.544
     }
-  ],
-  "players": []
+  ]
 }

@@ -26,7 +26,8 @@ import {
     findPlayerByName,
     createPlayer,
     updatePlayer,
-    getAllPlayers
+    getAllPlayers,
+    getLeaderboard
 } from "./api/playersApi.js";
 
 
@@ -40,6 +41,10 @@ async function playGame() {
 
 
     const playerName = prompt("What is your name? ").trim();
+    if (playerName === "") {
+        console.log("Please enter a name.");
+        return;
+    }
 
     let savedPlayer = await findPlayerByName(playerName);
 
@@ -48,9 +53,9 @@ async function playGame() {
             console.log (
                 `Hi ${savedPlayer.name}! Your previous lowest time was ${savedPlayer.lowestTime} seconds.`
             );
-        } else {
-            savedPlayer = await createPlayer(playerName);
-        }
+        } 
+    } else {
+        savedPlayer = await createPlayer(playerName);
     }
 
     const player = new Player(playerName);
@@ -92,24 +97,18 @@ async function playGame() {
     console.log(`Great job, ${player.name}!`);
     console.log(`Your time: ${currentTime.toFixed(2)} seconds`);
 
-    if (
-        savedPlayer.lowestTime === null ||
-        currentTime < savedPlayer.lowestTime
-    ) {
-
-        savedPlayer.lowestTime = currentTime;
-    savedPlayer = await updatePlayer(savedPlayer);
-
-    console.log("New record! Time updated.");
+    const result = await updatePlayer({
+        id: savedPlayer.id,
+        lowestTime: currentTime
+    });
+    
+    if (result.recordUpdated) {
+        console.log("New record! Time updated.");
+    } else {
+        console.log(`Your best time is still ${result.lowestTime} seconds.`);
     }
 
 
-
-
-
-
-
-    
 
 
 }
@@ -124,26 +123,22 @@ function readRiddleDetails() {
 
 
 async function showLeaderboard () {
-    const players = await getAllPlayers();
-
-    const rankedPlayers = players
-    .filter(player => player.lowestTime != null)
-    .sort((a, b) => a.lowestTime - b.lowestTime);
-
+    const players = await getLeaderboard();
 
     console.log("🏆 Leaderboard:");
 
-    if (rankedPlayers.length === 0) {
+    if (players.length === 0) {
         console.log("No completed games yet.");
         return;
     }
 
 
-    rankedPlayers.forEach((player, index) => {
+
+    players.forEach((player, index) => {
         console.log(
             `${index + 1}. ${player.name} - ${player.lowestTime} seconds`
         );
-    })
+    });
 
 
 }
@@ -227,7 +222,7 @@ do {
                         
         }
     } catch (error) {
-        console.log(error.message);
+        console.error(error);
     }
 
 
